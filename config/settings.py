@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Course7',
+        'NAME': 'course8',
         'USER': 'postgres',
-        'PASSWORD': '0880',
-        'HOST': 'localhost',
+        'PASSWORD': 'mysecretpassword',
+        'HOST': 'db',
         'PORT': '5432'
     }
 }
@@ -154,10 +154,12 @@ SIMPLE_JWT = {
 
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+#CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://habit-redis-1:6379'
 
 # URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://habit-redis-1:6379'
 
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = "Europe/Moscow"

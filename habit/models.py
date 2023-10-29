@@ -12,7 +12,7 @@ NOT_NULLABLE = {
     'blank': False
 }
 
-
+"""описываем привычку"""
 
 class Habit(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')

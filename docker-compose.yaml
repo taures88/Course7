@@ -1,0 +1,31 @@
+version: '3.11'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+
+  redis:
+    image: redis
+
+  celery:
+    build: .
+    command: celery -A config worker -l INFO
+    volumes:
+      - ./:/app
+    depends_on:
+      - redis
+  app:
+    build: .
+    command: bash -c 'python3 manage.py runserver 0.0.0.0:8000'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+
+volumes:
+  db:
+  celery:
